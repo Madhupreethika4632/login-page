@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Center the login form */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login {
+            border: 3px solid #f4f3f3ee;
+            padding: 16px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 1px solid #053a6fe7;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0e447dcd;
+            color: rgba(255, 255, 255, 0.945);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <label for="confirm-psw"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirm-psw" required>
+            <label>
+                <input type="checkbox" name="terms" required>I agree to terms and conditions
+            </label>
+            <button type="submit">Submit</button>
+        </div>
+        <div class="container" style="background-color:#ebf0e9">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('.login');
+        const usernameInput = document.querySelector('input[name="uname"]');
+        const passwordInput = document.querySelector('input[name="psw"]');
+        const confirmPasswordInput = document.querySelector('input[name="confirm-psw"]');
+        const termsCheckbox = document.querySelector('input[name="terms"]');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+            const terms = termsCheckbox.checked;
+
+            if (username.length < 3) {
+                alert('Username must be at least 3 characters');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters');
+                return;
+            }
+
+            if (confirmPassword !== password) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!terms) {
+                alert('You must agree to terms and conditions');
+                return;
+            }
+
+            // Form is valid, submit it
+            form.submit();
+        });
+    </script>
+</body>
+</html>
